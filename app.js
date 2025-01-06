@@ -1065,36 +1065,36 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Gestion du thème
-        function initTheme() {
-            const themeToggle = document.querySelector('#theme-toggle');
-            console.log('Theme toggle button:', themeToggle);
+// Gestion du thème
+function initTheme() {
+    const themeToggle = document.querySelector('#theme-toggle');
+    console.log('Theme toggle button:', themeToggle);
 
-            if (themeToggle) {
-                const icon = themeToggle.querySelector('i');
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
 
-                const savedTheme = localStorage.getItem('theme') || 'light';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                updateThemeIcon(icon, savedTheme);
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(icon, savedTheme);
 
-                themeToggle.addEventListener('click', function () {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        themeToggle.addEventListener('click', function () {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateThemeIcon(icon, newTheme);
-                    console.log('Theme changed to:', newTheme);
-                });
-            }
-        }
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(icon, newTheme);
+            console.log('Theme changed to:', newTheme);
+        });
+    }
+}
 
-        function updateThemeIcon(icon, theme) {
-            if (icon) {
-                icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-                console.log('Icon updated:', icon.className);
-            }
-        }
+function updateThemeIcon(icon, theme) {
+    if (icon) {
+        icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        console.log('Icon updated:', icon.className);
+    }
+}
 
         function initStatistics() {
             const statsButton = document.querySelector('#stats-button');

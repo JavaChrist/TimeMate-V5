@@ -14,10 +14,11 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Typographie */
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #f1eaea;
+  margin-top: 15px;
 }
 
 /* Boutons */
@@ -40,10 +41,12 @@ button:hover {
 
 /* En-tête */
 header {
-  background-color: var(--header-bg);
+  background-color: rgb(21, 45, 133);
   color: #fff;
-  padding: 1.5rem;
-  text-align: center;
+  border: 1px solid #5fa4d8;
+  border-radius: 15px;
+  margin: 15px 0;
+
 }
 
 .header-container {
@@ -51,19 +54,54 @@ header {
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 100%;
-  background-color: #333;
 }
 
 /* Navigation des semaines */
 .week-navigation {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin: 10px 0;
+  justify-content: space-around;
+  margin-top: 30px;
 }
 
+.header-buttons {
+  display: flex;
+justify-content: space-between;
+margin: 40px 15px;
+}
+
+.week-number {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(79, 5, 5, 0.433);
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+}
+
+.week-number:hover {
+  background-color: #0056b3;
+}
+
+/* Styles pour le thème clair */
+:root[data-theme='light'] {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Styles pour le thème sombre */
+:root[data-theme='dark'] {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+/* Autres styles */
 .week-number {
   padding: 8px 16px;
   border: none;
@@ -91,6 +129,16 @@ header {
   border-radius: 4px;
 }
 
+/* Calendrier */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f2f2f2;
+  border: 1px solid #0e0c0c;
+  border-radius: 4px;
+}
+
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -100,6 +148,8 @@ header {
 
 .calendar-day {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   padding: 10px 30px;
   border-radius: 8px;
@@ -209,21 +259,6 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-/* Centrer le conteneur du timer */
-#timer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px auto;
-  padding: 20px;
-  background: linear-gradient(145deg, #0a19a3, #0f6de0); /* Argenté */
-  box-shadow: 10px 10px 20px #a0a0a0, -10px -10px 20px #e4e4e4; /* Ombres pour effet 3D */
-  border-radius: 15px;
-  width: 60%;
-  max-width: 500px;
-}
-
 /* Timer effet 3D argenté */
 #timer-display {
   font-size: 3rem;
@@ -233,33 +268,6 @@ button[type="submit"]:hover {
   box-shadow: inset 5px 5px 10px #a0a0a0, inset -5px -5px 10px #e4e4e4;
   border-radius: 10px;
   margin-bottom: 20px;
-}
-
-/* Boutons stylisés 3D argentés */
-#timer-pause,
-#timer-reset {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  background: linear-gradient(145deg, #0a19a3, #0f6de0); /* Boutons argentés */
-  box-shadow: 5px 5px 10px #a0a0a0, -5px -5px 10px #e4e4e4;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-#timer-pause:hover,
-#timer-reset:hover {
-  transform: translateY(-5px);
-  box-shadow: 8px 8px 15px #a0a0a0, -8px -8px 15px #e4e4e4;
-}
-
-/* Animation au clic sur les boutons */
-#timer-pause:active,
-#timer-reset:active {
-  transform: translateY(2px);
-  box-shadow: 3px 3px 6px #a0a0a0, -3px -3px 6px #e4e4e4;
 }
 
 #openModal {
@@ -281,7 +289,7 @@ button[type="submit"]:hover {
 }
 
 .modal-content {
-  background-color: var(--modal-bg);
+  background-color: #daf6d0b6;
   padding: 20px;
   width: 80%;
   max-width: 600px;
@@ -347,137 +355,6 @@ button[type="submit"]:hover {
   padding: 5px 10px;
   border-radius: 4px;
   font-weight: bold;
-}
-
-.color-label.red {
-  color: #ff0000;
-}
-
-.color-label.green {
-  color: #00ff00;
-}
-
-.color-label.blue {
-  color: #0000ff;
-}
-
-.color-label.yellow {
-  color: #ffff00;
-}
-
-.color-label.purple {
-  color: #800080;
-}
-
-.color-label.orange {
-  color: #ffa500;
-}
-
-.color-label.pink {
-  color: #ffc0cb;
-}
-
-.color-label.brown {
-  color: #a52a2a;
-}
-
-.color-label.gray {
-  color: #808080;
-}
-
-.color-label.black {
-  color: #000000;
-}
-
-.color-label.teal {
-  color: #008080;
-}
-
-.color-label.navy {
-  color: #000080;
-}
-
-.color-label.olive {
-  color: #808000;
-}
-
-.color-label.lime {
-  color: #00ff00;
-}
-
-.color-label.magenta {
-  color: #ff00ff;
-}
-
-#activity-color option:hover {
-  background-color: inherit;
-  color: inherit;
-}
-
-/* Color options */
-.color-option {
-  display: flex;
-  align-items: center;
-}
-
-#activity-color option[value="red"] {
-  color: #ff0000;
-}
-
-#activity-color option[value="green"] {
-  color: #00ff00;
-}
-
-#activity-color option[value="blue"] {
-  color: #0000ff;
-}
-
-#activity-color option[value="yellow"] {
-  color: #ffff00;
-}
-
-#activity-color option[value="purple"] {
-  color: #800080;
-}
-
-#activity-color option[value="orange"] {
-  color: #ffa500;
-}
-
-#activity-color option[value="pink"] {
-  color: #ffc0cb;
-}
-
-#activity-color option[value="brown"] {
-  color: #a52a2a;
-}
-
-#activity-color option[value="gray"] {
-  color: #808080;
-}
-
-#activity-color option[value="black"] {
-  color: #000000;
-}
-
-#activity-color option[value="teal"] {
-  color: #008080;
-}
-
-#activity-color option[value="navy"] {
-  color: #000080;
-}
-
-#activity-color option[value="olive"] {
-  color: #808000;
-}
-
-#activity-color option[value="lime"] {
-  color: #00ff00;
-}
-
-#activity-color option[value="magenta"] {
-  color: #ff00ff;
 }
 
 /* Tableau */
@@ -597,11 +474,11 @@ th {
 }
 
 .name-text {
-  flex: 1;
+font-weight: 600;
 }
 
 .delete-name-button {
-  color: #ff4444;
+  color: #130202;
   cursor: pointer;
   margin-left: 8px;
   padding: 0 4px;
@@ -648,19 +525,19 @@ th {
 }
 
 .export-buttons .excel-btn {
-  background-color: #217346 !important; /* Vert Excel */
+  background-color: #217346; /* Vert Excel */
 }
 
 .export-buttons .excel-btn:hover {
-  background-color: #1a5c38 !important;
+  background-color: #1a5c38;
 }
 
 .export-buttons .pdf-btn {
-  background-color: #ff0000 !important; /* Rouge */
+  background-color: #ff0000;
 }
 
 .export-buttons .pdf-btn:hover {
-  background-color: #cc0000 !important;
+  background-color: #cc0000;
 }
 
 /* Style pour les icônes dans les boutons d'export */
@@ -765,14 +642,6 @@ th {
   font-size: 0.9em;
 }
 
-/* Styles pour les boutons de la barre de navigation */
-.week-navigation {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin: 10px 0;
-}
-
 .theme-button,
 .stats-button {
   padding: 8px 15px;
@@ -785,6 +654,10 @@ th {
   background-color: var(--header-bg);
   color: var(--text-color);
   transition: all 0.3s ease;
+}
+
+.stats-summary, .stat-item {
+  margin: 10px 0;
 }
 
 .theme-button:hover,
@@ -853,4 +726,17 @@ body {
 .notifications-button.active {
   background-color: #4caf50;
   color: white;
+}
+
+.delete-activity-btn {
+  color: white;
+  background-color: #007bff;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 5px;
 }

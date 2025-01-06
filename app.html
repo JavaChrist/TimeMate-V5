@@ -21,20 +21,23 @@
     <h1>TimeMate - Calendrier</h1>
     <div class="week-navigation">
       <button id="previous-week">Semaine précédente</button>
+      <div id="week-number" class="week-number"></div>
+      <button id="next-week">Semaine suivante</button>
+    </div>
+    <div class="header-buttons">
+      <button id="notifications-button" class="notifications-button">
+        <i class="fas fa-bell"></i> Rappels
+      </button>
       <button id="theme-toggle" class="theme-button">
         <i class="fas fa-moon"></i>
       </button>
       <button id="stats-button" class="stats-button">
         <i class="fas fa-chart-bar"></i> Statistiques
       </button>
-      <button id="notifications-button" class="notifications-button">
-        <i class="fas fa-bell"></i> Rappels
-      </button>
-      <a href="#" id="logout-button">Déconnexion</a>
-      <button id="next-week">Semaine suivante</button>
     </div>
+
     <div class="header-container">
-      <div id="week-number" class="week-number"></div>
+        <a href="#" id="logout-button">Déconnexion</a>
       <button onclick="location.href='activites.html'">Retour au tableau</button>
     </div>
   </header>
@@ -54,6 +57,7 @@
             Activer les notifications
           </label>
         </div>
+
         <div class="form-group">
           <label>Rappel avant activité :</label>
           <select id="notification-timing">
