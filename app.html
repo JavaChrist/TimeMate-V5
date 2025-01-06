@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TimeMate - Calendrier</title>
+  <link rel="stylesheet" href="main.css" />
+  <link rel="shortcut icon" href="/assets/images/Favicon.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+  <script src="statistics.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>TimeMate - Calendrier</h1>
+    <div class="week-navigation">
+      <button id="previous-week">Semaine précédente</button>
+      <button id="theme-toggle" class="theme-button">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button id="stats-button" class="stats-button">
+        <i class="fas fa-chart-bar"></i> Statistiques
+      </button>
+      <button id="notifications-button" class="notifications-button">
+        <i class="fas fa-bell"></i> Rappels
+      </button>
+      <a href="#" id="logout-button">Déconnexion</a>
+      <button id="next-week">Semaine suivante</button>
+    </div>
+    <div class="header-container">
+      <div id="week-number" class="week-number"></div>
+      <button onclick="location.href='activites.html'">Retour au tableau</button>
+    </div>
+  </header>
+
+  <!-- Conteneur de notifications -->
+  <div id="notifications-container" class="notifications-container"></div>
+
+  <!-- Paramètres de notifications -->
+  <div id="notifications-settings" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Paramètres des notifications</h3>
+      <form id="notifications-form">
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="enable-notifications" name="enable-notifications">
+            Activer les notifications
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Rappel avant activité :</label>
+          <select id="notification-timing">
+            <option value="5">5 minutes</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">1 heure</option>
+          </select>
+        </div>
+        <button type="submit" class="save-button">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <div class="calendar-day monday">
+        <span class="day-title">Lundi</span>
+
+      </div>
+      <div class="calendar-day tuesday">
+        <span class="day-title">Mardi</span>
+        <span class="date-display"></span>
+      </div>
+      <div class="calendar-day wednesday">
+        <span class="day-title">Mercredi</span>
+        <span class="date-display"></span>
+      </div>
+      <div class="calendar-day thursday">
+        <span class="day-title">Jeudi</span>
+        <span class="date-display"></span>
+      </div>
+      <div class="calendar-day friday">
+        <span class="day-title">Vendredi</span>
+        <span class="date-display"></span>
+      </div>
+      <div class="calendar-day saturday">
+        <span class="day-title">Samedi</span>
+        <span class="date-display"></span>
+      </div>
+      <div class="calendar-day sunday">
+        <span class="day-title">Dimanche</span>
+        <span class="date-display"></span>
+      </div>
+    </div>
+    <div class="calendar-body">
+      <div class="calendar-day-body" id="monday"></div>
+      <div class="calendar-day-body" id="tuesday"></div>
+      <div class="calendar-day-body" id="wednesday"></div>
+      <div class="calendar-day-body" id="thursday"></div>
+      <div class="calendar-day-body" id="friday"></div>
+      <div class="calendar-day-body" id="saturday"></div>
+      <div class="calendar-day-body" id="sunday"></div>
+    </div>
+  </div>
+
+  <button id="openModal">Ajouter une activité</button>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Ajouter/Modifier une activité</h2>
+      <form id="activity-form">
+        <div class="form-group">
+          <label for="activity-name">Nom de l'activité :</label>
+          <input type="text" id="activity-name" name="activity-name" required>
+        </div>
+        <div class="form-group">
+          <label for="activity-color">Couleur :</label>
+          <input type="color" id="activity-color" name="activity-color" value="#3498db">
+        </div>
+        <div class="form-group">
+          <label for="activity-dates">Dates :</label>
+          <input type="text" id="activity-dates" name="activity-dates" placeholder="Sélectionnez vos dates" required>
+        </div>
+        <div class="form-group">
+          <label>Plage horaire 1 :</label>
+          <div class="time-inputs">
+            <label for="activity-time-start-1">Début :</label>
+            <input type="time" id="activity-time-start-1" name="activity-time-start-1" class="activity-time-start">
+            <span>à</span>
+            <label for="activity-time-end-1">Fin :</label>
+            <input type="time" id="activity-time-end-1" name="activity-time-end-1" class="activity-time-end">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Plage horaire 2 :</label>
+          <div class="time-inputs">
+            <label for="activity-time-start-2">Début :</label>
+            <input type="time" id="activity-time-start-2" name="activity-time-start-2" class="activity-time-start">
+            <span>à</span>
+            <label for="activity-time-end-2">Fin :</label>
+            <input type="time" id="activity-time-end-2" name="activity-time-end-2" class="activity-time-end">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="activity-realized-time">Temps passé (en heures) :</label>
+          <input type="number" id="activity-realized-time" name="activity-realized-time" step="0.25" min="0">
+        </div>
+        <div class="form-group">
+          <label for="activity-category">Catégorie :</label>
+          <select id="activity-category" name="activity-category" required>
+            <option value="">Sélectionner une catégorie</option>
+            <option value="work">Travail</option>
+            <option value="meeting">Réunion</option>
+            <option value="break">Pause</option>
+            <option value="other">Autre</option>
+          </select>
+          <button type="button" id="add-category">+</button>
+        </div>
+        <button type="button" id="save-event">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="./firebase-config.js"></script>
+</body>
+
+</html>

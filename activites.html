@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activités et Temps Réel - TimeMate</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="shortcut icon" href="/assets/images/Favicon.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Scripts Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Tableau des Activités</h1>
+  </header>
+
+  <!-- Boutons avec labels pour l'accessibilité -->
+  <div class="button-container">
+    <button class="reset-button" id="reset-button" aria-label="Réinitialiser le tableau">Supprimer la séléction</button>
+    <button class="back-button" id="back-button" aria-label="Retourner au calendrier">Retour au calendrier</button>
+  </div>
+
+  <!-- Tableau des activités avec labels explicites -->
+  <table id="activities-log" aria-label="Liste des activités">
+    <thead>
+      <tr>
+        <th id="selection-header" scope="col">Sélection</th>
+        <th id="name-header" scope="col">Nom de l'activité</th>
+        <th id="planned-hours-header" scope="col">Heures prévues</th>
+        <th id="realized-hours-header" scope="col">Heures réalisées</th>
+        <th id="remaining-hours-header" scope="col">Temps restant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Les activités seront ajoutées ici par JavaScript avec la structure suivante -->
+      <!-- Exemple de structure pour JavaScript :
+      <tr>
+        <td>
+          <input type="checkbox" id="select-activity-1" name="select-activity-1" class="select-activity" aria-label="Sélectionner l'activité">
+          <label for="select-activity-1" class="visually-hidden">Sélectionner l'activité</label>
+        </td>
+        <td headers="name-header">Nom de l'activité</td>
+        <td headers="planned-hours-header">0.00</td>
+        <td headers="realized-hours-header">0.00</td>
+        <td headers="remaining-hours-header">0.00</td>
+      </tr>
+      -->
+    </tbody>
+  </table>
+
+  <!-- Boutons d'export avec labels explicites -->
+  <div class="export-buttons">
+    <button onclick="exportToExcel()" class="export-btn excel-btn" aria-label="Exporter en Excel">
+      <i class="fas fa-file-excel" aria-hidden="true"></i> Exporter en Excel
+    </button>
+    <button onclick="exportToPDF()" class="export-btn pdf-btn" aria-label="Exporter en PDF">
+      <i class="fas fa-file-pdf" aria-hidden="true"></i> Exporter en PDF
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="activites.js"></script>
+
+</body>
+
+</html>
